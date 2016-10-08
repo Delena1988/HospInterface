@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="  
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <context:annotation-config />
+	<context:component-scan base-package="com.lanniuh" />
+
+
+	<!--引入dubbo配置文件-->
+	<context:property-placeholder location="classpath*:dubbo.properties" ignore-unresolvable="true"/>
+	<!--引入mybatis配置文件-->
+	<context:property-placeholder location="classpath*:mybatis.properties" ignore-unresolvable="true"/>
+	<!--引入log4j配置文件-->
+	<context:property-placeholder location="classpath*:log4j.properties" ignore-unresolvable="true"/>
+
+	<!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+		<!--<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />-->
+		<!--&lt;!&ndash;过滤掉特殊占位符&ndash;&gt;-->
+		<!--<property name="ignoreUnresolvablePlaceholders" value="true" />-->
+		<!--<property name="locations">-->
+	    	<!--<list>-->
+				<!--&lt;!&ndash;引入mybatis配置文件&ndash;&gt;-->
+				<!--<value>classpath*:**/mybatis.properties</value>-->
+				<!--&lt;!&ndash;引入dubbo配置文件&ndash;&gt;-->
+				<!--<value>classpath*:**/dubbo.properties</value>-->
+				<!--&lt;!&ndash;引入log4j配置文件&ndash;&gt;-->
+				<!--<value>classpath*:**/log4j.properties</value>-->
+	        <!--</list>-->
+	    <!--</property>-->
+	    <!--<property name="fileEncoding" value="utf-8" />-->
+	<!--</bean>-->
+
+</beans>

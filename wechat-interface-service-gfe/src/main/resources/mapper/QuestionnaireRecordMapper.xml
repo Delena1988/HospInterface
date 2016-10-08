@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanniuh.questionnairerecord.dao.QuestionnaireRecordMapper">
+    <insert id="insert" parameterType="com.lanniuh.questionnairerecord.model.QuestionnaireRecord">
+    insert into t_send_questionnaire_record (id, third_code, yid,
+      pat_name, hosp_code, id_card, 
+      mobile_no, card_no, card_type, 
+      followup_name, followup_type, msg_type, 
+      followup_time, title, msg_url, 
+      dept_name, return_code, return_msg
+      )
+    values (#{id,jdbcType=VARCHAR}, #{thirdCode,jdbcType=VARCHAR}, #{yid,jdbcType=VARCHAR}, 
+      #{patName,jdbcType=VARCHAR}, #{hospCode,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{mobileNo,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, 
+      #{followupName,jdbcType=VARCHAR}, #{followupType,jdbcType=VARCHAR}, #{msgType,jdbcType=VARCHAR}, 
+      #{followupTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{msgUrl,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{returnCode,jdbcType=VARCHAR}, #{returnMsg,jdbcType=VARCHAR}
+      )
+  </insert>
+</mapper>

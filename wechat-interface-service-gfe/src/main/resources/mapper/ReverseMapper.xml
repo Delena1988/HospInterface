@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanniuh.reverse.dao.ReverseMapper">
+  <resultMap id="BaseResultMap" type="com.lanniuh.reverse.model.Reverse">
+    <result column="ORGAN_CODE" jdbcType="VARCHAR" property="organCode" />
+    <result column="PAT_NAME" jdbcType="VARCHAR" property="patName" />
+    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+    <result column="MOBILE_NO" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="VISIT_CARD_NO" jdbcType="VARCHAR" property="visitCardNo" />
+    <result column="REVERSE_DATE" jdbcType="TIMESTAMP" property="reverseDate" />
+    <result column="VISIT_DATE" jdbcType="TIMESTAMP" property="visitDate" />
+    <result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+    <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+  </resultMap>
+  <select id="getReverse" parameterType="Map" resultMap="BaseResultMap">
+    select * from v_jh_reverse where 1 = 1
+     <if test="deptCode != null">
+       ${deptCode}
+     </if>
+     and REVERSE_DATE &gt;= to_date(#{startTime},'yyyy-mm-dd hh24:mi:ss')
+     and REVERSE_DATE &lt; to_date(#{endTime},'yyyy-mm-dd hh24:mi:ss')
+  </select>
+
+</mapper>

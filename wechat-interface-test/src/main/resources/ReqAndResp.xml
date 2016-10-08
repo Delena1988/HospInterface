@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ReqAndResp>
+    <Req>
+        <ESBEntry>
+            <MessageHeader>
+                <Fid>BS10100</Fid>
+                <SourceSysCode>S41</SourceSysCode>
+                <TargetSysCode>S31</TargetSysCode>
+                <MsgDate></MsgDate>
+            </MessageHeader>
+            <MsgInfo>
+                <Msg>
+                    <![CDATA[<msg>
+                        <body>
+                                <row action="select">
+                                    <funcode>101201</funcode>
+                                    <yid>随访宣教信息id</yid>
+                                    <patname>曹沈栋</patname>
+                                    <idcard>330281199012220411</idcard>
+                                    <mobileno></mobileno>
+                                    <visitcardno></visitcardno>
+                                    <followupname>测试医生-林剑</followupname>
+                                    <followuptype>1</followuptype>
+                                    <msgtype>1</msgtype>
+                                    <followuptime>2016-08-16</followuptime>
+                                    <title>测试问卷</title>
+                                    <msgurl>http://www.sina.com.cn</msgurl>
+                                    <deptName>测试科</deptName>
+                                </row>
+                        </body>
+                </msg>
+                ]]>
+                </Msg>
+            </MsgInfo>
+        </ESBEntry>
+    </Req>
+    <Resp>
+
+        <ESBEntry>
+            <return><![CDATA[<data><state>0</state><result>发送成功</result></data>]]></return>
+        </ESBEntry>
+    </Resp>
+</ReqAndResp>

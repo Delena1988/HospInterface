@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanniuh.reverserecord.dao.ReverseRecordMapper">
+  <resultMap id="BaseResultMap" type="com.lanniuh.reverserecord.model.ReverseRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="pat_name" jdbcType="VARCHAR" property="patName" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="visit_card_no" jdbcType="VARCHAR" property="visitCardNo" />
+    <result column="reverse_date" jdbcType="TIMESTAMP" property="reverseDate" />
+    <result column="visit_date" jdbcType="TIMESTAMP" property="visitDate" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="filing_flag" jdbcType="INTEGER" property="filingFlag" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="push_time" jdbcType="TIMESTAMP" property="pushTime" />
+    <result column="msg_type" jdbcType="VARCHAR" property="msgType" />
+    <result column="return_code" jdbcType="VARCHAR" property="returnCode" />
+    <result column="return_msg" jdbcType="VARCHAR" property="returnMsg" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.lanniuh.reverserecord.model.ReverseRecord">
+    insert into t_reverse_record (id, pat_name, id_number, 
+      mobile_no, visit_card_no, reverse_date, 
+      visit_date, dept_code, dept_name, 
+      filing_flag, url, push_time, 
+      msg_type, return_code, return_msg
+      )
+    values (#{id,jdbcType=VARCHAR}, #{patName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{mobileNo,jdbcType=VARCHAR}, #{visitCardNo,jdbcType=VARCHAR}, #{reverseDate,jdbcType=TIMESTAMP}, 
+      #{visitDate,jdbcType=TIMESTAMP}, #{deptCode,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, 
+      #{filingFlag,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{pushTime,jdbcType=TIMESTAMP}, 
+      #{msgType,jdbcType=VARCHAR}, #{returnCode,jdbcType=VARCHAR}, #{returnMsg,jdbcType=VARCHAR}
+      )
+  </insert>
+
+</mapper>

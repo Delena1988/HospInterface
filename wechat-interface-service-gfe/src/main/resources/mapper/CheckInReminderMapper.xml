@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanniuh.checkinreminder.dao.CheckInReminderMapper">
+  <resultMap id="BaseResultMap" type="com.lanniuh.checkinreminder.model.CheckInReminder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="patient_id" jdbcType="VARCHAR" property="patientId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+    <result column="user_idcard" jdbcType="VARCHAR" property="userIdcard" />
+    <result column="birth_date" jdbcType="DATE" property="birthDate" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="health_num" jdbcType="VARCHAR" property="healthNum" />
+    <result column="registration_time" jdbcType="TIMESTAMP" property="registrationTime" />
+    <result column="registration_office" jdbcType="VARCHAR" property="registrationOffice" />
+    <result column="registration_serial" jdbcType="VARCHAR" property="registrationSerial" />
+    <result column="registration_doctor" jdbcType="VARCHAR" property="registrationDoctor" />
+    <result column="appointment_time" jdbcType="TIMESTAMP" property="appointmentTime" />
+    <result column="queue_number_type" jdbcType="VARCHAR" property="queueNumberType" />
+    <result column="queue_number" jdbcType="VARCHAR" property="queueNumber" />
+    <result column="treatment_date" jdbcType="TIMESTAMP" property="treatmentDate" />
+    <result column="visit_time_desc" jdbcType="VARCHAR" property="visitTimeDesc" />
+    <result column="bd_flag" jdbcType="VARCHAR" property="bdFlag" />
+    <result column="bd_time" jdbcType="VARCHAR" property="bdTime" />
+    <result column="is_yf" jdbcType="INTEGER" property="isYf" />
+    <result column="is_brq" jdbcType="INTEGER" property="isBrq" />
+    <result column="mode_type" jdbcType="VARCHAR" property="modeType" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="weight" jdbcType="DOUBLE" property="weight" />
+    <result column="height" jdbcType="DOUBLE" property="height" />
+    <result column="temperature" jdbcType="DOUBLE" property="temperature" />
+    <result column="systolic_pressure" jdbcType="DOUBLE" property="systolicPressure" />
+    <result column="diastolic_pressure" jdbcType="DOUBLE" property="diastolicPressure" />
+    <result column="pulse" jdbcType="DOUBLE" property="pulse" />
+    <result column="respiratory_rate" jdbcType="DOUBLE" property="respiratoryRate" />
+    <result column="head_circumference" jdbcType="DOUBLE" property="headCircumference" />
+    <result column="fontanel_size" jdbcType="DOUBLE" property="fontanelSize" />
+    <result column="gestational_weeks" jdbcType="DOUBLE" property="gestationalWeeks" />
+    <result column="analysis" jdbcType="DOUBLE" property="analysis" />
+    <result column="abdominal_circumference" jdbcType="DOUBLE" property="abdominalCircumference" />
+    <result column="fetal_heart_rate" jdbcType="DOUBLE" property="fetalHeartRate" />
+    <result column="record_id" jdbcType="INTEGER" property="recordId" />
+  </resultMap>
+
+  <select id="getCheckedPatient" parameterType="Map" resultMap="BaseResultMap">
+    select * from ambulatory_automation where  bd_time &gt;= #{startTime} and bd_time &lt; #{endTime}
+  </select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanniuh.checkinrecord.dao.CheckInRecordMapper">
+  <resultMap id="BaseResultMap" type="com.lanniuh.checkinrecord.model.CheckInRecord">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="pat_name" jdbcType="VARCHAR" property="patName" />
+    <result column="visit_card_no" jdbcType="VARCHAR" property="visitCardNo" />
+    <result column="check_in_time" jdbcType="TIMESTAMP" property="checkInTime" />
+    <result column="reminder_time" jdbcType="TIMESTAMP" property="reminderTime" />
+    <result column="msg_type" jdbcType="VARCHAR" property="msgType" />
+    <result column="return_code" jdbcType="VARCHAR" property="returnCode" />
+    <result column="return_msg" jdbcType="VARCHAR" property="returnMsg" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lanniuh.checkinrecord.model.CheckInRecord">
+    insert into t_check_in_record (id, pat_name, visit_card_no, 
+      check_in_time, reminder_time,msg_type, return_code,
+      return_msg)
+    values (#{id,jdbcType=VARCHAR}, #{patName,jdbcType=VARCHAR}, #{visitCardNo,jdbcType=VARCHAR}, 
+      #{checkInTime,jdbcType=TIMESTAMP}, #{reminderTime,jdbcType=TIMESTAMP},#{msgType,jdbcType=VARCHAR},  #{returnCode,jdbcType=VARCHAR},
+      #{returnMsg,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>

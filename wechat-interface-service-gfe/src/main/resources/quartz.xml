@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="checkInReminderJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <bean class="com.lanniuh.job.CheckInReminderJob"/>
+        </property>
+        <property name="targetMethod" value="checkInReminderJob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="checkInReminderJob"/>
+        <!-- 调度工厂实例化后，经过0秒开始执行调度 -->
+        <property name="startDelay" value="0"/>
+        <!-- 每5秒调度一次 -->
+        <property name="repeatInterval" value="5000"/>
+    </bean>
+
+    <bean id="pregnantProfileJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <bean class="com.lanniuh.job.PregnantProfileJob"/>
+        </property>
+        <property name="targetMethod" value="pregnantProfileJob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="simpleTrigger2" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="pregnantProfileJob"/>
+        <!-- 调度工厂实例化后，经过0秒开始执行调度 -->
+        <property name="startDelay" value="0"/>
+        <!-- 每5秒调度一次 -->
+        <property name="repeatInterval" value="5000"/>
+    </bean>
+
+    <bean id="reverseJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <bean class="com.lanniuh.job.ReverseJob"/>
+        </property>
+        <property name="targetMethod" value="reverseJob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="simpleTrigger3" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="reverseJob"/>
+        <!-- 调度工厂实例化后，经过0秒开始执行调度 -->
+        <property name="startDelay" value="0"/>
+        <!-- 每5秒调度一次 -->
+        <property name="repeatInterval" value="5000"/>
+    </bean>
+
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger"/>
+                <ref bean="simpleTrigger2"/>
+                <ref bean="simpleTrigger3"/>
+            </list>
+        </property>
+    </bean>
+</beans>

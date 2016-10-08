@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/jdbc
+         http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd " default-autowire="byName">
+    <!-- enable component scanning (beware that this does not enable com scanning!) -->
+
+    <import resource="classpath:quartz.xml"/>
+
+    <context:component-scan base-package="com.lanniuh"/>
+    <!-- enable autowire -->
+    <context:annotation-config/>
+
+    <!--spring 工具类-->
+    <bean id="springContextUtil" class="com.lanniuh.util.SpringContextUtil"/>
+
+    <bean id="weChatService" class="com.lanniuh.service.WeChatServiceImpl"></bean>
+    <!--提供方应用名称信息，这个相当于起一个名字，我们dubbo管理页面比较清晰是哪个应用暴露出来的-->
+    <dubbo:application name="dubbo_provider"></dubbo:application>
+    <!--使用zookeeper注册中心暴露服务地址-->
+    <dubbo:registry address="zookeeper://10.20.201.78:2181" check="false" subscribe="false"
+                    register=""></dubbo:registry>
+    <!--要暴露的服务接口-->
+    <dubbo:service interface="com.lanniuh.api.WeChatService" ref="weChatService" timeout="1200000"/>
+
+    <!--随访-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://10.20.201.78:3306/cloud_followup?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="user" value="root"/>
+        <property name="password" value="jianhai520"/>
+        <property name="initialPoolSize" value="1"/>
+        <property name="minPoolSize" value="0"/>
+        <property name="maxPoolSize" value="10"/>
+        <property name="acquireIncrement" value="5"/>
+        <property name="maxIdleTime" value="10"/>
+        <property name="maxStatements" value="0"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+        <!--<property name="configLocation" value="mybatis-config.xml"/>-->
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="com.lanniuh.questionnairerecord.dao,com.lanniuh.referralreminderrecord.dao,com.lanniuh.checkinrecord.dao,com.lanniuh.pregnantprofilerecord.dao,com.lanniuh.pregnantprofile.dao,com.lanniuh.reverserecord.dao"/>
+    </bean>
+
+    <!-- transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <qualifier value="interview"/>
+    </bean>
+
+    <!-- 全注解方式   需加上@Transactional -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--天使-->
+    <bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://10.20.201.79:3306/jumper_his?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+        <property name="initialPoolSize" value="1"/>
+        <property name="minPoolSize" value="0"/>
+        <property name="maxPoolSize" value="3"/>
+        <property name="acquireIncrement" value="1"/>
+        <property name="maxIdleTime" value="10"/>
+        <property name="maxStatements" value="0"/>
+    </bean>
+
+    <bean id="sqlSessionFactory2" name="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2"/>
+        <property name="mapperLocations" value="classpath*:**/*Mapper.xml"/>
+        <!--mybatis配置-->
+        <!--<property name="configLocation" value="classpath:mybatis-config2.xml"/>-->
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2"/>
+        <property name="basePackage" value="com.lanniuh.checkinreminder.dao"/>
+    </bean>
+
+    <bean id="transactionManager2"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource2"/>
+        <qualifier value="angel"/>
+    </bean>
+
+    <!-- 全注解方式 -->
+    <tx:annotation-driven transaction-manager="transactionManager2"/>
+
+
+    <!--预约记录 Oracle-->
+    <bean id="dataSource3" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@10.20.201.42:1521:orcl"/>
+        <property name="user" value="old_his"/>
+        <property name="password" value="ewell123"/>
+        <property name="initialPoolSize" value="1"/>
+        <property name="minPoolSize" value="0"/>
+        <property name="maxPoolSize" value="3"/>
+        <property name="acquireIncrement" value="2"/>
+        <property name="maxIdleTime" value="10"/>
+        <property name="maxStatements" value="0"/>
+    </bean>
+
+
+    <bean id="sqlSessionFactory3" name="sqlSessionFactory3" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource3"/>
+        <property name="mapperLocations" value="classpath*:**/*Mapper.xml"/>
+        <!--mybatis配置-->
+        <!--<property name="configLocation" value="classpath:mybatis-config2.xml"/>-->
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory3"/>
+        <property name="basePackage" value="com.lanniuh.reverse.dao"/>
+    </bean>
+
+    <bean id="transactionManager3"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource3"/>
+        <qualifier value="reverse"/>
+    </bean>
+
+    <!-- 全注解方式 -->
+    <tx:annotation-driven transaction-manager="transactionManager3"/>
+
+
+    <!--首诊判断 SQLServer  bi-->
+    <bean id="dataSource4" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="net.sourceforge.jtds.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:jtds:sqlserver://10.20.200.171:1433;DatabaseName=YUNSF"/>
+        <property name="user" value="sa"/>
+        <property name="password" value="Chuanyuan2008"/>
+        <property name="initialPoolSize" value="1"/>
+        <property name="minPoolSize" value="0"/>
+        <property name="maxPoolSize" value="3"/>
+        <property name="acquireIncrement" value="2"/>
+        <property name="maxIdleTime" value="10"/>
+        <property name="maxStatements" value="0"/>
+    </bean>
+
+    <bean id="sqlSessionFactory4" name="sqlSessionFactory4" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource4"/>
+        <property name="mapperLocations" value="classpath*:**/*Mapper.xml"/>
+        <!--mybatis配置-->
+        <!--<property name="configLocation" value="classpath:mybatis-config2.xml"/>-->
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory4"/>
+        <property name="basePackage" value="com.lanniuh.firstvisit.dao"/>
+    </bean>
+
+    <bean id="transactionManager4"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource4"/>
+        <qualifier value="bi"/>
+    </bean>
+
+    <!-- 全注解方式 -->
+    <tx:annotation-driven transaction-manager="transactionManager4"/>
+
+
+</beans>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanniuh.pregnantprofile.dao.PregnantProfileMapper">
+  <resultMap id="BaseResultMap" type="com.lanniuh.pregnantprofile.model.PregnantProfile">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="birth_date" jdbcType="DATE" property="birthDate" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="abo" jdbcType="VARCHAR" property="abo" />
+    <result column="rh" jdbcType="VARCHAR" property="rh" />
+    <result column="marriage" jdbcType="VARCHAR" property="marriage" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="insurance" jdbcType="VARCHAR" property="insurance" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
+    <result column="menarche_age" jdbcType="INTEGER" property="menarcheAge"/>
+    <result column="menstruation" jdbcType="INTEGER" property="menstruation"/>
+    <result column="period" jdbcType="INTEGER" property="period"/>
+    <result column="menstrual_flow" jdbcType="INTEGER" property="menstrualFlow"/>
+    <result column="dysmenorrhea" jdbcType="INTEGER" property="dysmenorrhea"/>
+    <result column="last_menstrual_period" jdbcType="DATE" property="lastMenstrualPeriod"/>
+    <result column="due_date" jdbcType="DATE" property="dueDate"/>
+    <result column="gravidity" jdbcType="VARCHAR" property="gravidity"/>
+    <result column="parity" jdbcType="VARCHAR" property="parity"/>
+    <result column="artificial_abortion_times" jdbcType="INTEGER" property="artificialAbortionTimes"/>
+    <result column="spontaneousl_abortion_times" jdbcType="INTEGER" property="spontaneouslAbortionTimes"/>
+    <result column="drug_abortion_times" jdbcType="INTEGER" property="drugAbortionTimes"/>
+    <result column="intermediate_abortion_times" jdbcType="INTEGER" property="intermediateAbortionTimes"/>
+    <result column="exfetation_times" jdbcType="INTEGER" property="exfetationTimes"/>
+    <result column="hydatidiform_mole_times" jdbcType="INTEGER" property="hydatidiformMoleTimes"/>
+    <result column="pre_gestation_date" jdbcType="DATE" property="preGestationDate"/>
+    <result column="termination_mode" jdbcType="VARCHAR" property="terminationMode"/>
+    <result column="pregnancy_complications_history" jdbcType="VARCHAR" property="pregnancyComplicationsHistory"/>
+    <result column="previous_history" jdbcType="VARCHAR" property="previousHistory"/>
+    <result column="family_history" jdbcType="VARCHAR" property="familyHistory"/>
+    <result column="allergy_history" jdbcType="VARCHAR" property="allergyHistory"/>
+    <result column="husband_family_history" jdbcType="VARCHAR" property="husbandFamilyHistory"/>
+    <result column="poison_contact_history" jdbcType="VARCHAR" property="poisonContactHistory"/>
+    <result column="gynecologic_surgery_history" jdbcType="VARCHAR" property="gynecologicSurgeryHistory"/>
+    <result column="surgery_history" jdbcType="VARCHAR" property="surgeryHistory"/>
+    <result column="genetic_family_history" jdbcType="VARCHAR" property="geneticFamilyHistory"/>
+    <result column="folic_acid_supplementation" jdbcType="INTEGER" property="folicAcidSupplementation"/>
+    <result column="husband_name" jdbcType="VARCHAR" property="husbandName"/>
+    <result column="husband_age" jdbcType="INTEGER" property="husbandAge"/>
+    <result column="husband_job" jdbcType="VARCHAR" property="husbandJob"/>
+  </resultMap>
+
+  <resultMap id="HeLeMap" type="com.lanniuh.pregnantprofile.model.SelfPregnantInfo">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="personname"/>
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobilenumber"/>
+    <result column="id_card" jdbcType="VARCHAR" property="idcard"/>
+    <result column="birth_date" jdbcType="DATE" property="birthday"/>
+    <result column="sex" jdbcType="VARCHAR" property="sexcode"/>
+    <result column="abo" jdbcType="VARCHAR" property="bloodtypecode"/>
+    <result column="rh" jdbcType="VARCHAR" property="rhbloodcode"/>
+    <result column="marriage" jdbcType="VARCHAR" property="maritalstatuscode"/>
+    <result column="education" jdbcType="VARCHAR" property="educationcode"/>
+    <result column="insurance" jdbcType="VARCHAR" property="insurancecode"/>
+    <result column="address_detail" jdbcType="VARCHAR" property="homeaddress_text"/>
+    <result column="menarche_age" jdbcType="INTEGER" property="menarcheage"/>
+    <result column="menstruation" jdbcType="INTEGER" property="menstrualperiod"/>
+    <result column="period" jdbcType="INTEGER" property="cycle"/>
+    <result column="menstrual_flow" jdbcType="INTEGER" property="menstrualblood"/>
+    <result column="dysmenorrhea" jdbcType="INTEGER" property="dysmenorrhea"/>
+    <result column="last_menstrual_period" jdbcType="DATE" property="lastmenstrualperiod"/>
+    <result column="due_date" jdbcType="DATE" property="dateofprenatal"/>
+    <result column="gravidity" jdbcType="VARCHAR" property="gravidity"/>
+    <result column="parity" jdbcType="VARCHAR" property="parity"/>
+    <result column="artificial_abortion_times" jdbcType="INTEGER" property="trafficflow"/>
+    <result column="spontaneousl_abortion_times" jdbcType="INTEGER" property="naturalabortion"/>
+    <result column="drug_abortion_times" jdbcType="INTEGER" property="qwetimes"/>
+    <result column="intermediate_abortion_times" jdbcType="INTEGER" property="odinopoeia"/>
+    <result column="exfetation_times" jdbcType="INTEGER" property="ectopicpregnancy"/>
+    <result column="hydatidiform_mole_times" jdbcType="INTEGER" property="vesicularmole"/>
+    <result column="pre_gestation_date" jdbcType="DATE" property="pregestationdate"/>
+    <result column="termination_mode" jdbcType="VARCHAR" property="pregestationmode"/>
+    <result column="pregnancy_complications_history" jdbcType="VARCHAR" property="gestationneuropathy"/>
+    <result column="previous_history" jdbcType="VARCHAR" property="pasthistory"/>
+    <result column="family_history" jdbcType="VARCHAR" property="familyhistory"/>
+    <result column="allergy_history" jdbcType="VARCHAR" property="allergichistory"/>
+    <result column="husband_family_history" jdbcType="VARCHAR" property="husbandfamilyhistory"/>
+    <result column="poison_contact_history" jdbcType="VARCHAR" property="poisontouchhis"/>
+    <result column="gynecologic_surgery_history" jdbcType="VARCHAR" property="gynecologyops"/>
+    <result column="surgery_history" jdbcType="VARCHAR" property="operationhistory"/>
+    <result column="genetic_family_history" jdbcType="VARCHAR" property="heredityfamilyhistory"/>
+    <result column="folic_acid_supplementation" jdbcType="INTEGER" property="folicsupplementation"/>
+    <result column="husband_name" jdbcType="VARCHAR" property="husbandname"/>
+    <result column="create_time" jdbcType="DATE" property="createtime"/>
+    <result column="update_time" jdbcType="DATE" property="updatetime"/>
+
+    <result column="phonenumber" jdbcType="VARCHAR" property="phonenumber"></result>
+    <result column="unusualbone" jdbcType="VARCHAR" property="unusualbone"></result>
+    <result column="preterm" jdbcType="VARCHAR" property="preterm"></result>
+    <result column="dystocia" jdbcType="VARCHAR" property="dystocia"></result>
+    <result column="died" jdbcType="VARCHAR" property="died"></result>
+    <result column="abnormality" jdbcType="VARCHAR" property="abnormality"></result>
+    <result column="newbrondied" jdbcType="VARCHAR" property="newbrondied"></result>
+  </resultMap>
+  <select id="getSelfPregnantInfo" parameterType="Map" resultMap="HeLeMap">
+     select b.id,
+      name,
+      mobile_no,
+      id_card,
+      date_format(birth_date,'%Y-%m-%d') birth_date,
+      case sex
+        when '1' then '1'
+        when '2' then '2'
+        when '0' then '9'
+        when '9' then '0'
+      end sex,
+      case abo
+       when '1' then '1'
+       when '2' then '2'
+       when '3' then '0'
+       when '4' then '3'
+       when '5' then '5'
+       end abo,
+      case rh
+        when '1' then '2'
+        when '2' then '1'
+        when '3' then '3'
+        when '4' then '3'
+      end rh,
+      case marriage
+        when '10' then '1'
+        when '20' then '2'
+        when '21' then '2'
+        when '22' then '2'
+        when '23' then '2'
+        when '30' then '4'
+        when '40' then '3'
+        when '90' then '9'
+      end marriage,
+      education,
+      insurance,
+      address_detail,
+      menarche_age,
+      menstruation,
+      period,
+      menstrual_flow,
+      case dysmenorrhea
+        when '1' then '1'
+        when '2' then '2'
+        when '3' then '4'
+        when '4' then '3'
+      end dysmenorrhea,
+      date_format(last_menstrual_period,'%Y-%m-%d %H:%i:%s') last_menstrual_period,
+      date_format(due_date,'%Y-%m-%d') due_date,
+      gravidity,
+      parity,
+      artificial_abortion_times,
+      spontaneousl_abortion_times,
+      drug_abortion_times,
+      intermediate_abortion_times,
+      exfetation_times,
+      hydatidiform_mole_times,
+      pre_gestation_date,
+      termination_mode,
+      pregnancy_complications_history,
+      previous_history,
+      family_history_desc family_history,
+      allergy_history,
+      case husband_family_history
+        when '无疾病史' then '1'
+        when '遗传性疾病史' then '2'
+        when '精神疾病史' then '3'
+        when '智障' then '4'
+        when '畸形' then '5'
+        else '9'
+      end husband_family_history  ,
+      poison_contact_history,
+      gynecologic_surgery_history,
+      surgery_history,
+      genetic_family_history,
+      folic_acid_supplementation,
+      husband_name,
+      date_format(b.create_time,'%Y-%m-%d %H:%i:%s') create_time,
+      date_format(b.update_time,'%Y-%m-%d %H:%i:%s') update_time,
+      '' phonenumber,
+      '' unusualbone,
+      '' preterm,
+      '' dystocia,
+      '' died,
+      '' abnormality,
+      '' newbrondied
+      from t_filing_master a left join t_filing_hele b on a.id = b.master_id
+      where (b.create_time &gt;= #{startTime} and b.create_time &lt; #{endTime})
+       or (b.update_time &gt;= #{startTime} and b.update_time &lt; #{endTime})
+
+  </select>
+
+
+  <select id="getPregnantProfile" parameterType="Map" resultMap="BaseResultMap">
+      select * from t_filing_master a left join t_filing_hele b on a.id = b.master_id
+      where b.create_time &gt;= #{startTime}
+      and b.create_time &lt; #{endTime}
+  </select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanniuh.referralreminderrecord.dao.ReferralReminderRecordMapper">
+
+  <insert id="insert" parameterType="com.lanniuh.referralreminderrecord.model.ReferralReminderRecord">
+    insert into t_referral_reminder_record (id, third_code, hosp_code, pat_name,
+      id_card, mobile_no, visit_card_no, 
+      visit_card_type, followup_name, followup_type, 
+      followup_time, address, sent_time, 
+      content)
+    values (#{id,jdbcType=VARCHAR}, #{thirdCode,jdbcType=VARCHAR}, #{hospCode,jdbcType=VARCHAR}, #{patName,jdbcType=VARCHAR},
+      #{idCard,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, #{visitCardNo,jdbcType=VARCHAR}, 
+      #{visitCardType,jdbcType=VARCHAR}, #{followupName,jdbcType=VARCHAR}, #{followupType,jdbcType=VARCHAR}, 
+      #{followupTime,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sentTime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+</mapper>

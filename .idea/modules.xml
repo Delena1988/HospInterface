@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/HospInterface.iml" filepath="$PROJECT_DIR$/HospInterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-utils/common-utils.iml" filepath="$PROJECT_DIR$/common-utils/common-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/environment-demo/environment-demo.iml" filepath="$PROJECT_DIR$/environment-demo/environment-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-interface-api/wechat-interface-api.iml" filepath="$PROJECT_DIR$/wechat-interface-api/wechat-interface-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-interface-service-gfe/wechat-interface-service-gfe.iml" filepath="$PROJECT_DIR$/wechat-interface-service-gfe/wechat-interface-service-gfe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-interface-service-xfy/wechat-interface-service-xfy.iml" filepath="$PROJECT_DIR$/wechat-interface-service-xfy/wechat-interface-service-xfy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-interface-test/wechat-interface-test.iml" filepath="$PROJECT_DIR$/wechat-interface-test/wechat-interface-test.iml" />
+    </modules>
+  </component>
+</project>
