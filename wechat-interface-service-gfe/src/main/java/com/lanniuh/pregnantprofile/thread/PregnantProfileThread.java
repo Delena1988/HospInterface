@@ -55,7 +55,7 @@ public class PregnantProfileThread extends Thread {
             e.printStackTrace();
         }
 
-        if (time <= 10){
+        if (time <= 5){
             selfPregnantInfo.setId(0);
         }
 
