@@ -191,8 +191,7 @@
       '' abnormality,
       '' newbrondied
       from t_filing_master a left join t_filing_hele b on a.id = b.master_id
-      where (b.create_time &gt;= #{startTime} and b.create_time &lt; #{endTime})
-       or (b.update_time &gt;= #{startTime} and b.update_time &lt; #{endTime})
+      where (b.update_time &gt;= #{startTime} and b.update_time &lt; #{endTime})
 
   </select>
 

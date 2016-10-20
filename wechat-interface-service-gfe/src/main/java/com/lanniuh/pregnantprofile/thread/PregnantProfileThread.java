@@ -12,6 +12,8 @@ import com.lanniuh.util.SpringContextUtil;
 import com.lanniuh.util.StringUtil;
 import org.apache.log4j.Logger;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -45,8 +47,15 @@ public class PregnantProfileThread extends Thread {
             Token.getInstance().resetToken();
             token = Token.getToken();
         }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        long time = 0;
+        try {
+            time = (sdf.parse(selfPregnantInfo.getUpdatetime()).getTime() - sdf.parse(selfPregnantInfo.getCreatetime()).getTime())/1000;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        if (selfPregnantInfo.getCreatetime().equals(selfPregnantInfo.getUpdatetime())){
+        if (time <= 10){
             selfPregnantInfo.setId(0);
         }
 
