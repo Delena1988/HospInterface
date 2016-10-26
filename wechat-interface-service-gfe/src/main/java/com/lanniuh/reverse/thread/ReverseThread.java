@@ -25,11 +25,13 @@ public class ReverseThread extends Thread {
     private List<Reverse> reverses;
     private List<String> pregnantDeptList;
     private List<String> childDeptList;
+    private List<String> reproductionList;
 
     public ReverseThread(List<Reverse> reverses) {
         this.reverses = reverses;
         pregnantDeptList = Arrays.asList(PropertiesUtil.getInstanse().getPregnantDept().split(","));
         childDeptList = Arrays.asList(PropertiesUtil.getInstanse().getChildDept().split(","));
+        reproductionList = Arrays.asList(PropertiesUtil.getInstanse().getReproductionDept().split(","));
     }
 
     @Override
@@ -61,6 +63,18 @@ public class ReverseThread extends Thread {
             else if (childDeptList.contains(reverse.getDeptCode())) {//儿童早发建档
                 url = getChildFilingUrl(reverse);
                 logger.info("child url: " + url);
+            }
+            else if(reproductionList.contains(reverse.getDeptCode())){//生殖医学中心建档
+                if ("1".equals(reverse.getSexCode()) || "1".equals(IDCardUtil.getSex(reverse.getIdNumber()))){
+                    url = getReproductionMaleFilingUrl(reverse);
+                    logger.info("reproduction male url: " + url);
+                }
+                else if("2".equals(reverse.getSexCode()) || "2".equals(IDCardUtil.getSex(reverse.getIdNumber()))){
+                    url = getReproductionFemaleFilingUrl(reverse);
+                    logger.info("reproduction femal url: " + url);
+                }else{
+                    logger.info("reproduction cannot tell sex!!!");
+                }
             }
             if (!StringUtil.isEmpty(url)){
                 //推送建档消息，先推微信模版，失败的话发送短信
@@ -146,6 +160,38 @@ public class ReverseThread extends Thread {
         return JSON.parseObject(res).getString("url");
     }
 
+    //获取生殖医学中心自助建档 男性
+    private String getReproductionMaleFilingUrl(Reverse reverse){
+        String url = PropertiesUtil.getInstanse().getInterviewFilingUrl();
+        String serverCode = PropertiesUtil.getInstanse().getInterviewServerCode();
+        String secret = PropertiesUtil.getInstanse().getInterviewKey();
+
+        String protocol = "1003";//生殖医学中心自助建档 男性
+        Map<String, String> params = new HashMap<>();
+        params.put("protocol", protocol);
+        params.put("patName", reverse.getPatName());
+        params.put("idCard", reverse.getIdNumber());
+        params.put("visitCardNo", reverse.getVisitCardNo());
+        String res = HttpUtil.sendPost(serverCode, secret, url, params);
+        return JSON.parseObject(res).getString("url");
+    }
+
+    //获取生殖医学中心自助建档 女性
+    private String getReproductionFemaleFilingUrl(Reverse reverse) {
+        String url = PropertiesUtil.getInstanse().getInterviewFilingUrl();
+        String serverCode = PropertiesUtil.getInstanse().getInterviewServerCode();
+        String secret = PropertiesUtil.getInstanse().getInterviewKey();
+
+        String protocol = "1004";//生殖医学中心自助建档 女性
+        Map<String, String> params = new HashMap<>();
+        params.put("protocol", protocol);
+        params.put("patName", reverse.getPatName());
+        params.put("idCard", reverse.getIdNumber());
+        params.put("visitCardNo", reverse.getVisitCardNo());
+        String res = HttpUtil.sendPost(serverCode, secret, url, params);
+        return JSON.parseObject(res).getString("url");
+    }
+
     //发送建档h5给微信
     private String sendMsg2WeChat(Reverse reverse,String url){
         String reqXml = ReverseHandle.assemblyWeChatXmlReq(reverse, url);;
@@ -169,6 +215,7 @@ public class ReverseThread extends Thread {
             return result;
         }
     }
+
 
     public static void main(String[] args) {
         Reverse reverse = new Reverse();

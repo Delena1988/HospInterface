@@ -11,6 +11,8 @@
     <result column="VISIT_DATE" jdbcType="TIMESTAMP" property="visitDate" />
     <result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
     <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+    <result column="SEX_CODE" jdbcType="VARCHAR" property="sexCode" />
+    <result column="SEX_NAME" jdbcType="VARCHAR" property="sexName" />
   </resultMap>
   <select id="getReverse" parameterType="Map" resultMap="BaseResultMap">
     select * from v_jh_reverse where 1 = 1

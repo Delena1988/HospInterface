@@ -19,6 +19,8 @@ public class Reverse {
     private Date visitDate;
     private String deptCode;
     private String deptName;
+    private String sexCode;//1男2女0未知
+    private String sexName;
 
     public String getOrganCode() {
         return organCode;
@@ -92,6 +94,22 @@ public class Reverse {
         this.deptName = deptName;
     }
 
+    public String getSexCode() {
+        return sexCode;
+    }
+
+    public void setSexCode(String sexCode) {
+        this.sexCode = sexCode;
+    }
+
+    public String getSexName() {
+        return sexName;
+    }
+
+    public void setSexName(String sexName) {
+        this.sexName = sexName;
+    }
+
     @Override
     public String toString() {
         return "Reverse{" +
@@ -104,6 +122,8 @@ public class Reverse {
                 ", visitDate=" + visitDate +
                 ", deptCode='" + deptCode + '\'' +
                 ", deptName='" + deptName + '\'' +
+                ", sexCode='" + sexCode + '\'' +
+                ", sexName='" + sexName + '\'' +
                 '}';
     }
 }
