@@ -45,8 +45,13 @@ public class QuestionnaireHandle {
         row.add(new BaseElement("yid").addText(StringUtil.trim(questionnaire.getYid())));
         row.add(new BaseElement("patname").addText(StringUtil.trim(questionnaire.getPatName())));
         row.add(new BaseElement("idcard").addText(StringUtil.trim(questionnaire.getIdCard())));
-        row.add(new BaseElement("mobileno").addText(StringUtil.trim(questionnaire.getMobileNo())));
-        row.add(new BaseElement("visitcardno").addText(StringUtil.trim(questionnaire.getVisitCardNo())));
+        if (StringUtil.isEmpty(questionnaire.getIdCard())){
+            row.add(new BaseElement("mobileno").addText(StringUtil.trim(questionnaire.getMobileNo())));
+        }else{
+            row.add(new BaseElement("mobileno").addText(""));
+        }
+//        row.add(new BaseElement("visitcardno").addText(StringUtil.trim(questionnaire.getVisitCardNo())));
+        row.add(new BaseElement("visitcardno").addText(""));
         row.add(new BaseElement("followupname").addText(StringUtil.trim(questionnaire.getFollowupName())));
         row.add(new BaseElement("followuptype").addText(StringUtil.trim(questionnaire.getFollowupType())));
         row.add(new BaseElement("msgtype").addText(StringUtil.trim(questionnaire.getMsgType())));
