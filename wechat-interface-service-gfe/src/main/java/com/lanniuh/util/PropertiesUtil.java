@@ -75,6 +75,9 @@ public class PropertiesUtil {
     public String getChildDept(){
         return propertis.get("child_dept");
     }
+    public String getReproductionDept(){
+        return propertis.get("reproduction_dept");
+    }
     
     public String get(String param){
     	return propertis.get(param);

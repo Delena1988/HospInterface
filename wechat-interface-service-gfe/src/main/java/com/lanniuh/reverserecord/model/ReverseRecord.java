@@ -24,6 +24,10 @@ public class ReverseRecord {
 
     private String deptName;
 
+    private String sexCode;
+
+    private String sexName;
+
     private Integer filingFlag;
 
     private String url;
@@ -106,6 +110,22 @@ public class ReverseRecord {
 
     public void setDeptName(String deptName) {
         this.deptName = deptName == null ? null : deptName.trim();
+    }
+
+    public String getSexCode() {
+        return sexCode;
+    }
+
+    public void setSexCode(String sexCode) {
+        this.sexCode = sexCode == null ? null : sexCode.trim();
+    }
+
+    public String getSexName() {
+        return sexName;
+    }
+
+    public void setSexName(String sexName) {
+        this.sexName = sexName == null ? null : sexName.trim();
     }
 
     public Integer getFilingFlag() {
