@@ -10,12 +10,12 @@ import java.util.Map;
  * 16/8/24.
  */
 public class Test {
-    public static void main(String[] args) {
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("code","-1");
-        map.put("msg","调用微信接口失败");
-        ReplyMsg replyMsg = new ReplyMsg();
-        replyMsg.setBody(map);
-        System.out.println(replyMsg.getBody());
-    }
+//    public static void main(String[] args) {
+//        Map<String,String> map = new HashMap<String,String>();
+//        map.put("code","-1");
+//        map.put("msg","调用微信接口失败");
+//        ReplyMsg replyMsg = new ReplyMsg();
+//        replyMsg.setBody(map);
+//        System.out.println(replyMsg.getBody());
+//    }
 }
