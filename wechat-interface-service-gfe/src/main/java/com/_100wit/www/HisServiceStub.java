@@ -36,6 +36,7 @@ public class HisServiceStub extends org.apache.axis2.client.Stub
             } catch (AxisFault axisFault) {
                 axisFault.printStackTrace();
             }
+        }
         private static synchronized String getUniqueSuffix(){
             // reset the counter if it is greater than 99999
             if (counter > 99999){
