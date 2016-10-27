@@ -13,8 +13,12 @@
         *  HisServiceStub java implementation
         */
 
-        
-        public class HisServiceStub extends org.apache.axis2.client.Stub
+
+import org.apache.axis2.AxisFault;
+import org.apache.axis2.context.ConfigurationContext;
+import org.apache.axis2.context.ConfigurationContextFactory;
+
+public class HisServiceStub extends org.apache.axis2.client.Stub
         {
         protected org.apache.axis2.description.AxisOperation[] _operations;
 
@@ -24,7 +28,14 @@
         private java.util.HashMap faultMessageMap = new java.util.HashMap();
 
         private static int counter = 0;
-
+        private static ConfigurationContext configurationContext;
+        static {
+            try {
+                configurationContext = ConfigurationContextFactory
+                        .createConfigurationContextFromFileSystem(null, null);
+            } catch (AxisFault axisFault) {
+                axisFault.printStackTrace();
+            }
         private static synchronized String getUniqueSuffix(){
             // reset the counter if it is greater than 99999
             if (counter > 99999){
@@ -192,7 +203,7 @@
      * Constructor taking the target endpoint
      */
     public HisServiceStub(String targetEndpoint) throws org.apache.axis2.AxisFault {
-        this(null,targetEndpoint);
+        this(configurationContext,targetEndpoint);
     }
 
 
